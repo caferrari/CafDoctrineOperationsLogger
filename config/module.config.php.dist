@@ -1,0 +1,18 @@
+<?php
+
+return array(
+    'doctrine.logger' => array(
+        'writers' => array(
+            'CafDoctrineLogger\Writer\File' => array(
+                'formatter' => 'CafDoctrineLogger\Formatter',
+                'logPath' => getcwd() . '/data/queries',
+                'fileName' => floor(time() / 60) . '.log'
+            )
+        ),
+        'events' => array(
+            'postPersist',
+            'postUpdate',
+            'postRemove'
+        )
+    )
+);

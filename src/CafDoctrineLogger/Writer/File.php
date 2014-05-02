@@ -9,13 +9,7 @@ class File extends Stream
 
     public function __construct(array $config)
     {
-
-        $interval = $config['fileInterval'];
-
-        $name = floor(time() / $interval);
-        $fileName = str_replace('%name%', $name, $config['fileNameTemplate']);
-        $filePath = $config['logPath'] . '/' . $fileName;
-
+        $filePath = $config['logPath'] . '/' . $config['fileName'];
         parent::__construct($filePath);
     }
 }
