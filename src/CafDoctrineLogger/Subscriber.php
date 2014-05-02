@@ -11,19 +11,17 @@ class Subscriber implements EventSubscriber
 {
 
     private $logger;
+    private $events;
 
-    public function __construct(Logger $logger)
+    public function __construct(Logger $logger, array $events)
     {
         $this->logger = $logger;
+        $this->events = $events;
     }
 
     public function getSubscribedEvents()
     {
-        return array(
-            'postPersist',
-            'postUpdate',
-            'postRemove'
-        );
+        return $this->events;
     }
 
     public function __call($event, $args)

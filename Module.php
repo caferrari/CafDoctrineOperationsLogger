@@ -1,3 +1,3 @@
 <?php
 
-require_once __DIR__ . '/src/Test/Module.php';
+require_once __DIR__ . '/src/CafDoctrineLogger/Module.php';

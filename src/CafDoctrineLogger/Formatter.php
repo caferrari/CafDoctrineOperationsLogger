@@ -1,10 +1,10 @@
 <?php
 
-namespace CafDoctrineLogger\Log\Formatter;
+namespace CafDoctrineLogger;
 
 use Zend\Log\Formatter\Simple;
 
-class Json extends Simple
+class Formatter extends Simple
 {
 
     const DEFAULT_FORMAT = '%message%';
