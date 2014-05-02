@@ -1,0 +1,29 @@
+{
+    "name":        "caferrari/caf-doctrine-logger",
+    "description": "ZF2 Module that logs doctrine operations",
+    "type":        "library",
+    "license":     "MIT",
+    "keywords":    [
+        "doctrine",
+        "module",
+        "zf2"
+    ],
+    "authors": [
+        {
+            "name": "Carlos André Ferrari",
+            "email": "caferrari@gmail.com",
+            "homepage": "http://ferrari.eti.br/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":                          ">=5.4",
+        "zendframework/zend-log":       ">2.3",
+        "doctrine/doctrine-orm-module": "*"
+    },
+    "autoload" : {
+        "psr-0": {
+            "CafDoctrineLogger\\": "src/"
+        }
+    }
+}
