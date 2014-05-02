@@ -37,7 +37,7 @@ class Subscriber implements EventSubscriber
             return;
         }
 
-        $entityClass = array_pop(explode('\\', get_class($entity)));
+        $entityClass = str_replace('DoctrineORMModule\\Proxy\\__CG__\\', '', get_class($entity));
 
         $data = json_encode(array(
             'timestamp' => (new \DateTime())->format(DATE_ISO8601),
