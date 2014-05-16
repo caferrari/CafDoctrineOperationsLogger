@@ -4,14 +4,19 @@ namespace CafDoctrineLogger;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ModuleManager\ModuleManager;
 use Zend\Log\Logger;
 use Zend\Log\Writer\Stream as StreamLogger;
 
 class Module
 {
+
     public function onBootstrap(MvcEvent $e)
     {
-        (new ModuleRouteListener())->attach($e->getApplication()->getEventManager());
+
+        $evm = $e->getApplication()->getEventManager();
+
+        (new ModuleRouteListener())->attach($evm);
 
         $sm = $e->getApplication()->getServiceManager();
 
@@ -20,8 +25,13 @@ class Module
             return;
         }
 
-        $evs = new Subscriber($sm->get('doctrine.entity.logger'), $config['events']);
+        $logger = $sm->get('doctrine.entity.logger');
+        $evs = new Subscriber($logger, $config['events']);
         $sm->get('em')->getEventManager()->addEventSubscriber($evs);
+
+        $evm->attach(MvcEvent::EVENT_FINISH, function () use ($logger) {
+            $logger->__destruct();
+        });
     }
 
     public function getConfig()
